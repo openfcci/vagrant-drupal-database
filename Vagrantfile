@@ -3,7 +3,7 @@
 
 prefix              = "drupal"
 
-boxtemplate         = "Ubuntu-12.04-bare-virtualbox"
+boxtemplate         = "fcc-vagrant-10-01-13"
 
 source_prefix   = "source"
 source_ip       = "172.16.0.21"
@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
     end
     source.vm.provision "puppet_server" do |puppet|
       puppet.puppet_server = "puppet.fccinteractive.com"
+      puppet.options = ["--pluginsync"]
     end
   end
   config.vm.define "destination" do |destination|
@@ -35,6 +36,7 @@ Vagrant.configure("2") do |config|
     end
     destination.vm.provision "puppet_server" do |puppet|
       puppet.puppet_server = "puppet.fccinteractive.com"
+      puppet.options = ["--pluginsync"]
     end
   end
 
